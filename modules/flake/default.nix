@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../hosts
+    ../../hosts
   ];
 
   perSystem =
