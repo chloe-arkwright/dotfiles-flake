@@ -24,7 +24,7 @@
     };
 
   fileSystems."/store" =
-    { device = "caee500c-1571-444f-bddc-139980822896";
+    { device = "/dev/disk/by-uuid/caee500c-1571-444f-bddc-139980822896";
       fsType = "ext4";
     };
 
