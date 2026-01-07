@@ -105,6 +105,13 @@
     package = pkgs.jdk25;
   };
 
+  programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+    };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -143,4 +150,27 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # MC fix?
+
+  services = {
+      libinput.enable = true;
+      gpm.enable = true;
+    };
+
+    environment.sessionVariables = {
+      LD_LIBRARY_PATH = map (pkg: "${pkg}/lib") (
+        with pkgs;
+        [
+          # required for lwjgl games
+          glfw
+          libpulseaudio
+          libGL
+          openal
+          stdenv.cc.cc
+
+          udev # oshi
+        ]
+      );
+    };
 }
