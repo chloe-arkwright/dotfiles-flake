@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+pwd
+sudo nixos-rebuild --flake .#chloe-tuxedo switch
