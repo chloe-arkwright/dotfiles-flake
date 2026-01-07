@@ -101,7 +101,7 @@
   programs.firefox.enable = true;
   programs.git.enable = true;
   programs.java = {
-    enabled = true;
+    enable = true;
     package = pkgs.jdk25;
   };
 
