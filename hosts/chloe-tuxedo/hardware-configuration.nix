@@ -42,6 +42,7 @@
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
     graphics.enable = true;
+    graphics.enable32Bit = true;
     nvidia.modesetting.enable = true;
     tuxedo-drivers.enable = true;
   };
