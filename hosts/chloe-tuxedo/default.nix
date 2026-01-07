@@ -118,6 +118,7 @@
             openal
             stdenv.cc.cc
             udev # oshi
+            flite # translator
         ]);
     };
 }
