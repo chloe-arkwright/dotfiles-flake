@@ -2,8 +2,10 @@
   description = "Chloe's personal dotfiles/NixOS config";
 
   outputs =
-    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { };
-#     imports = [ ./modules/flake ];
+    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ "./modules/flake" ];
+    };
 
   inputs = {
     # https://deer.social/profile/did:plc:mojgntlezho4qt7uvcfkdndg/post/3loogwsoqok2w
