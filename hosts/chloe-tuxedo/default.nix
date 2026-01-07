@@ -92,6 +92,7 @@
     packages = with pkgs; [
       kdePackages.kate
       equibop
+      jetbrains.idea
     #  thunderbird
     ];
   };
@@ -99,6 +100,10 @@
   # Install firefox.
   programs.firefox.enable = true;
   programs.git.enable = true;
+  programs.java = {
+    enabled = true;
+    package = pkgs.jdk25;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
