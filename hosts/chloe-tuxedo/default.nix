@@ -70,6 +70,7 @@
           kdePackages.kate
           equibop
           jetbrains.idea
+          prismlauncher
         ];
     };
 
