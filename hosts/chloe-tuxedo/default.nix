@@ -5,6 +5,10 @@
 { config, pkgs, ... }:
 
 {
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+    nix.settings.experimental-features = ["nix-command" "flakes"];
+
     imports = [ ./hardware-configuration.nix];
 
     # Bootloader.
@@ -31,30 +35,32 @@
         LC_TIME = "en_GB.UTF-8";
     };
 
-    services.xserver.enable = false;
+       services = {
+            openssh.enable = true;
+            libinput.enable = true;
+            gpm.enable = true;
 
-    # Enable the KDE Plasma Desktop Environment.
-    services.displayManager.sddm.enable = true;
-    services.desktopManager.plasma6.enable = true;
+            xserver.enable = false;
 
-	# Configure keymap in X11
-    services.xserver.xkb = {
-        layout = "gb";
-        variant = "";
-    };
+            displayManager.sddm.enable = true;
+            displayManager.sddm.wayland.enable = true;
+            desktopManager.plasma6.enable = true;
+
+            printing.enable = true;
+
+            pipewire = {
+                enable = true;
+                alsa.enable = true;
+                alsa.support32Bit = true;
+                pulse.enable = true;
+            };
+        };
+
+    # todo: figure out how to set keyboard layout on wayland / kde
 
     console.keyMap = "uk";
 
-    services.printing.enable = true;
-
-    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-    };
 
     users.users.chloe = {
         isNormalUser = true;
@@ -67,36 +73,44 @@
         ];
     };
 
-    programs.firefox.enable = true;
-    programs.git.enable = true;
-    programs.java = {
-        enable = true;
-        package = pkgs.jdk25;
-    };
+    programs = {
+        firefox.enable = true;
+        git.enable = true;
+        java = {
+            enable = true;
+            package = pkgs.jdk25;
+        };
 
-    programs.steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        localNetworkGameTransfers.openFirewall = true;
-    };
+        steam = {
+            enable = true;
+            remotePlay.openFirewall = true;
+            dedicatedServer.openFirewall = true;
+            localNetworkGameTransfers.openFirewall = true;
+        };
 
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
+        gnupg.agent = {
+            enable = true;
+            enableSSHSupport = true;
+        };
+    };
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
-    environment.systemPackages = with pkgs; [ ];
+    environment = {
+        systemPackages = with pkgs; [ ];
 
-    programs.gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-    };
-
-    services = {
-        openssh.enable = true;
-        libinput.enable = true;
-        gpm.enable = true;
+        sessionVariables = {
+            LD_LIBRARY_PATH = map (pkg: "${pkg}/lib") ( with pkgs; [
+                # required for lwjgl games
+                glfw
+                libpulseaudio
+                libGL
+                openal
+                stdenv.cc.cc
+                udev # oshi
+                flite # translator todo: not working
+            ]);
+        };
     };
 
     # This value determines the NixOS release from which the default
@@ -106,19 +120,4 @@
     # Before changing this value read the documentation for this option
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "25.11"; # Did you read the comment?
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-
-    # MC fix?
-    environment.sessionVariables = {
-        LD_LIBRARY_PATH = map (pkg: "${pkg}/lib") ( with pkgs; [
-            # required for lwjgl games
-            glfw
-            libpulseaudio
-            libGL
-            openal
-            stdenv.cc.cc
-            udev # oshi
-            flite # translator
-        ]);
-    };
 }

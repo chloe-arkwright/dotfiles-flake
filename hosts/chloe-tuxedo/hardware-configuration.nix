@@ -4,46 +4,43 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix") ];
+    imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" "zenpower" ];
-  boot.kernelParams = [ "amd_pstate=active" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
-  boot.blacklistedKernelModules = [ "k10temp" ];
+    boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ "kvm-amd" "zenpower" ];
+    boot.kernelParams = [ "amd_pstate=active" ];
+    boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
+    boot.blacklistedKernelModules = [ "k10temp" ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/036f78b2-a607-42bb-9caf-6efdeffc7a18";
-      fsType = "ext4";
+    fileSystems."/" = {
+        device = "/dev/disk/by-uuid/036f78b2-a607-42bb-9caf-6efdeffc7a18";
+        fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BB11-673B";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+    fileSystems."/boot" = {
+        device = "/dev/disk/by-uuid/BB11-673B";
+        fsType = "vfat";
+        options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/store" =
-    { device = "/dev/disk/by-uuid/caee500c-1571-444f-bddc-139980822896";
-      fsType = "ext4";
+    fileSystems."/store" = {
+        device = "/dev/disk/by-uuid/caee500c-1571-444f-bddc-139980822896";
+        fsType = "ext4";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/ac4ae619-64e2-4038-a733-d84f301612cb"; }
-    ];
+    swapDevices = [ { device = "/dev/disk/by-uuid/ac4ae619-64e2-4038-a733-d84f301612cb"; } ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  services.fstrim.enable = lib.mkDefault true;
-  services.thermald.enable = lib.mkDefault true;
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    services.fstrim.enable = lib.mkDefault true;
+    services.thermald.enable = lib.mkDefault true;
 
-  hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    bluetooth.enable = true;
-    graphics.enable = true;
-    graphics.enable32Bit = true;
-    nvidia.modesetting.enable = true;
-    tuxedo-drivers.enable = true;
-  };
+    hardware = {
+        cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+        bluetooth.enable = true;
+        graphics.enable = true;
+        graphics.enable32Bit = true;
+        nvidia.modesetting.enable = true;
+        tuxedo-drivers.enable = true;
+    };
 }
