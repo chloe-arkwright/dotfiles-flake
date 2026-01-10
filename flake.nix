@@ -38,8 +38,6 @@
                 nixos-hardware.nixosModules.common-pc-ssd
 
                 nixos-hardware.nixosModules.common-gpu-nvidia
-                nixos-hardware.nixosModules.common-gpu-nvidia-prime
-                nixos-hardware.nixosModules.common-gpu-nvidia-ada-lovelace
             ];
         };
     };

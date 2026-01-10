@@ -13,6 +13,7 @@
         # \--> imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
         enableRedistributableFirmware = true;
 
+        nvidia.open = true;
         nvidia.prime = {
             nvidiaBusId = "PCI:1@0:0:0";
             amdgpuBusId = "PCI:7@0:0:0";
