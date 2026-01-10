@@ -8,8 +8,10 @@
     hardware = {
         bluetooth.enable = true;
         tuxedo-drivers.enable = true;
-        tuxedo-control-center.package = tuxedo-nixos.packages.x86_64-linux.default;
-        tuxedo-control-center.enable = true;
+        tuxedo-rs = {
+            enable = true;
+            tailor-gui.enable = true;
+        };
 
         # Enable non-free firmware because our device was not detected.
         # \--> imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];

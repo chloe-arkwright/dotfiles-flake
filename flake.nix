@@ -20,14 +20,9 @@
           repo = "flake-parts";
           inputs.nixpkgs-lib.follows = "nixpkgs";
         };
-
-        tuxedo-nixos = {
-            url = "github:blitz/tuxedo-nixos";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, tuxedo-nixos, home-manager, ... }@inputs: {
+    outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {
         nixosConfigurations.chloe-tuxedo = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -42,7 +37,6 @@
 
                 nixos-hardware.nixosModules.common-gpu-nvidia
 
-                tuxedo-nixos.nixosModules.default
                 ./hosts/chloe-tuxedo
             ];
         };
