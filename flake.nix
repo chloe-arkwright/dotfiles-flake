@@ -34,8 +34,8 @@
                 nixos-hardware.nixosModules.common-gpu-amd
                 nixos-hardware.nixosModules.common-hidpi
                 nixos-hardware.nixosModules.common-pc
-                nixos-hardware.nixosModules.common-laptop
-                nixos-hardware.nixosModules.common-ssd
+                nixos-hardware.nixosModules.common-pc-laptop
+                nixos-hardware.nixosModules.common-pc-ssd
 
                 nixos-hardware.nixosModules.common-gpu-nvidia
                 nixos-hardware.nixosModules.common-gpu-nvidia-prime
