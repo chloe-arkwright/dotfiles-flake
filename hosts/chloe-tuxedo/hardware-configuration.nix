@@ -55,10 +55,10 @@
     home-manager = {
         useUserPackages = true;
         useGlobalPkgs = true;
-    };
 
-    home.stateVersion = "25.11";
-    home.packages = [ pkgs.way-displays pkgs.home-manager ];
+        home.stateVersion = "25.11";
+        home.packages = [ pkgs.way-displays pkgs.home-manager ];
+    };
 
     services.way-displays = {
         enable = true;
