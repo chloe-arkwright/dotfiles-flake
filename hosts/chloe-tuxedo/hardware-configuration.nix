@@ -43,7 +43,7 @@
         nvidia = {
             enable = true;
             modesetting.enable = true;
-            prime.offload = true;
+            prime.offload.enable = true;
             prime.nvidiaBusId = "PCI:1@0:0:0";
             prime.amdgpuBusId = "PCI:7@0:0:0";
             powerManagement.enable = true;
