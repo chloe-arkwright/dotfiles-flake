@@ -38,6 +38,13 @@
                 nixos-hardware.nixosModules.common-gpu-nvidia
                 home-manager.nixosModules.default
 
+                {
+                    home-manager = {
+                        useUserPackages = true;
+                        useGlobalPkgs = true;
+                    };
+                }
+
                 ./hosts/chloe-tuxedo
             ];
         };
