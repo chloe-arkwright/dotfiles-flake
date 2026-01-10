@@ -40,7 +40,14 @@
         bluetooth.enable = true;
         graphics.enable = true;
         graphics.enable32Bit = true;
-        nvidia.modesetting.enable = true;
+        nvidia = {
+            enable = true;
+            modesetting.enable = true;
+            prime.offload = true;
+            prime.nvidiaBusId = "PCI:1@0:0:0";
+            prime.amdgpuBusId = "PCI:7@0:0:0";
+            powerManagement.enable = true;
+        };
         tuxedo-drivers.enable = true;
     };
 }

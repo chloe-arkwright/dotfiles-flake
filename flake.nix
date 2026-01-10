@@ -33,11 +33,5 @@
       owner = "tgirlcloud";
       repo = "easy-hosts";
     };
-
-    homebrew = {
-      type = "github";
-      owner = "zhaofengli";
-      repo = "nix-homebrew";
-    };
   };
 }

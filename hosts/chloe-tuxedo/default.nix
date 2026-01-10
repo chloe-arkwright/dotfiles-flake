@@ -71,6 +71,7 @@
           equibop
           jetbrains.idea
           prismlauncher
+          gimp
         ];
     };
 
