@@ -41,7 +41,7 @@
         graphics.enable = true;
         graphics.enable32Bit = true;
         nvidia = {
-            enable = true;
+            enabled = true;
             modesetting.enable = true;
             prime.offload.enable = true;
             prime.nvidiaBusId = "PCI:1@0:0:0";
