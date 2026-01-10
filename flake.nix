@@ -42,8 +42,8 @@
 
                 nixos-hardware.nixosModules.common-gpu-nvidia
 
-                ./hosts/chloe-tuxedo
                 tuxedo-nixos.nixosModules.default
+                ./hosts/chloe-tuxedo
             ];
         };
     };
