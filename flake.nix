@@ -36,6 +36,7 @@
                 nixos-hardware.nixosModules.common-pc-ssd
 
                 nixos-hardware.nixosModules.common-gpu-nvidia
+                home-manager.nixosModules.default
 
                 ./hosts/chloe-tuxedo
             ];
