@@ -52,7 +52,7 @@
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-    services.way_displays = {
+    services.way-displays = {
         enable = true;
 
         settings = {
