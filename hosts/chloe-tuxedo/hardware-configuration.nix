@@ -35,26 +35,26 @@
     services.fstrim.enable = lib.mkDefault true;
     services.thermald.enable = lib.mkDefault true;
 
-    services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+#    services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
     hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
         bluetooth.enable = true;
         graphics.enable = true;
-        nvidia = {
-            modesetting.enable = true;
-
-            # experimental
-            powerManagement.enable = false;
-            powerManagement.finegrained = false;
-
-            prime.offload.enable = true;
-            prime.offload.enableOffloadCmd = true;
-            prime.nvidiaBusId = "PCI:1@0:0:0";
-            prime.amdgpuBusId = "PCI:7@0:0:0";
-            open = false;
-            package = config.boot.kernelPackages.nvidiaPackages.stable;
-        };
+#        nvidia = {
+#            modesetting.enable = true;
+#
+#            # experimental
+#            powerManagement.enable = false;
+#            powerManagement.finegrained = false;
+#
+#            prime.offload.enable = true;
+#            prime.offload.enableOffloadCmd = true;
+#            prime.nvidiaBusId = "PCI:1@0:0:0";
+#            prime.amdgpuBusId = "PCI:7@0:0:0";
+#            open = false;
+#            package = config.boot.kernelPackages.nvidiaPackages.stable;
+#        };
         tuxedo-drivers.enable = true;
     };
 }
