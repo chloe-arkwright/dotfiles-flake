@@ -35,13 +35,14 @@
     services.fstrim.enable = lib.mkDefault true;
     services.thermald.enable = lib.mkDefault true;
 
+    services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+
     hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
         bluetooth.enable = true;
         graphics.enable = true;
         graphics.enable32Bit = true;
         nvidia = {
-            enabled = lib.mkForce true;
             modesetting.enable = true;
             prime.offload.enable = true;
             prime.nvidiaBusId = "PCI:1@0:0:0";
