@@ -10,7 +10,6 @@
         tuxedo-drivers.enable = true;
         tuxedo-rs = {
             enable = true;
-            tailor-gui.enable = true;
         };
 
         # Enable non-free firmware because our device was not detected.
