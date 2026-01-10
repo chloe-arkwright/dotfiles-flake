@@ -52,7 +52,9 @@
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-    home-manager.services.way-displays = {
+    home.packages = [ pkgs.way-displays ];
+
+    services.way-displays = {
         enable = true;
 
         settings = {
