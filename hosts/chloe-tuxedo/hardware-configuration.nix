@@ -8,12 +8,14 @@
     hardware = {
         bluetooth.enable = true;
         tuxedo-drivers.enable = true;
+        tuxedo-control-center.enable = true;
 
         # Enable non-free firmware because our device was not detected.
         # \--> imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
         enableRedistributableFirmware = true;
 
         nvidia.open = true;
+        nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
         nvidia.prime = {
             nvidiaBusId = "PCI:1@0:0:0";
             amdgpuBusId = "PCI:7@0:0:0";
