@@ -35,7 +35,7 @@
     services.fstrim.enable = lib.mkDefault true;
     services.thermald.enable = lib.mkDefault true;
 
-    services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+    services.xserver.videoDrivers = [ "nvidia" "modesetting"  ];
 
     hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
