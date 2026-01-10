@@ -48,6 +48,7 @@
             prime.nvidiaBusId = "PCI:1@0:0:0";
             prime.amdgpuBusId = "PCI:7@0:0:0";
             powerManagement.enable = true;
+            open = false;
         };
         tuxedo-drivers.enable = true;
     };
