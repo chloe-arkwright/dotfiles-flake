@@ -26,7 +26,7 @@
         nixosConfigurations.chloe-tuxedo = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-                ./hosts/chloe-tuxedo/configuration.nix
+                ./hosts/chloe-tuxedo
 
                 nixos-hardware.nixosModules.common-cpu-amd
                 nixos-hardware.nixosModules.common-cpu-amd-pstate
