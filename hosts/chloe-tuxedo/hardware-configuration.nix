@@ -35,7 +35,7 @@
     services.fstrim.enable = lib.mkDefault true;
     services.thermald.enable = lib.mkDefault true;
 
-    services.xserver.videoDrivers = [ "nvidia" "modesetting"  ];
+    services.xserver.videoDrivers = [ "nvidia" "amdgpu"  ];
 
     hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -47,7 +47,7 @@
             prime.offload.enable = true;
             prime.nvidiaBusId = "PCI:1@0:0:0";
             prime.amdgpuBusId = "PCI:7@0:0:0";
-            powerManagement.enable = true;
+#            powerManagement.enable = true;
             open = false;
         };
         tuxedo-drivers.enable = true;
