@@ -4,14 +4,29 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-    imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
+    hardware = {
+        bluetooth.enable = true;
+        tuxedo-drivers.enable = true;
+
+        # Enable non-free firmware because our device was not detected.
+        # \--> imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+        enableRedistributableFirmware = true;
+
+        nvidia.prime = {
+            nvidiaBusId = "PCI:1@0:0:0";
+            amdgpuBusId = "PCI:7@0:0:0";
+        };
+    };
+
+    # Enable Cooling Management...
+    services.thermald.enable = true;
+    # Just in case our firmware can be updated with fwupd
+    services.fwupd.enable = true;
 
     boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
     boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-amd" "zenpower" ];
-    boot.kernelParams = [ "amd_pstate=active" ];
-    boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
-    boot.blacklistedKernelModules = [ "k10temp" ];
+    boot.kernelModules = [ "kvm-amd" ];
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/036f78b2-a607-42bb-9caf-6efdeffc7a18";
@@ -32,29 +47,4 @@
     swapDevices = [ { device = "/dev/disk/by-uuid/ac4ae619-64e2-4038-a733-d84f301612cb"; } ];
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    services.fstrim.enable = lib.mkDefault true;
-    services.thermald.enable = lib.mkDefault true;
-
-#    services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-
-    hardware = {
-        cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-        bluetooth.enable = true;
-        graphics.enable = true;
-#        nvidia = {
-#            modesetting.enable = true;
-#
-#            # experimental
-#            powerManagement.enable = false;
-#            powerManagement.finegrained = false;
-#
-#            prime.offload.enable = true;
-#            prime.offload.enableOffloadCmd = true;
-#            prime.nvidiaBusId = "PCI:1@0:0:0";
-#            prime.amdgpuBusId = "PCI:7@0:0:0";
-#            open = false;
-#            package = config.boot.kernelPackages.nvidiaPackages.stable;
-#        };
-        tuxedo-drivers.enable = true;
-    };
 }

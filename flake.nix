@@ -1,37 +1,46 @@
 {
   description = "Chloe's personal dotfiles/NixOS config";
 
-  outputs =
-    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      imports = [ ./modules/flake ];
+    inputs = {
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+        # manage userspace with nix
+        home-manager = {
+          type = "github";
+          owner = "nix-community";
+          repo = "home-manager";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        # bring all the mess together with flake-parts
+        flake-parts = {
+          type = "github";
+          owner = "hercules-ci";
+          repo = "flake-parts";
+          inputs.nixpkgs-lib.follows = "nixpkgs";
+        };
     };
 
-  inputs = {
-    # https://deer.social/profile/did:plc:mojgntlezho4qt7uvcfkdndg/post/3loogwsoqok2w
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    outputs = { ... }@inputs: {
+        nixosConfigurations.chloe-tuxedo = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+                ./hosts/chloe-tuxedo/configuration.nix
 
-    # manage userspace with nix
-    home-manager = {
-      type = "github";
-      owner = "nix-community";
-      repo = "home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+                nixos-hardware.nixosModules.common-cpu-amd
+                nixos-hardware.nixosModules.common-cpu-amd-pstate
+                nixos-hardware.nixosModules.common-cpu-amd-zenpower
+                nixos-hardware.nixosModules.common-gpu-amd
+                nixos-hardware.nixosModules.common-hidpi
+                nixos-hardware.nixosModules.common-pc
+                nixos-hardware.nixosModules.common-laptop
+                nixos-hardware.nixosModules.common-ssd
 
-    # bring all the mess together with flake-parts
-    flake-parts = {
-      type = "github";
-      owner = "hercules-ci";
-      repo = "flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
+                nixos-hardware.nixosModules.common-gpu-nvidia
+                nixos-hardware.nixosModules.common-gpu-nvidia-prime
+                nixos-hardware.nixosModules.common-gpu-nvidia-ada-lovelace
+            ];
+        };
     };
-
-    # easily manage our hosts
-    easy-hosts = {
-      type = "github";
-      owner = "tgirlcloud";
-      repo = "easy-hosts";
-    };
-  };
 }
