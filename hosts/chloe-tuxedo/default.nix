@@ -84,4 +84,58 @@
     # Before changing this value read the documentation for this option
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "25.11"; # Did you read the comment?
+
+    programs = {
+        firefox.enable = true;
+        git.enable = true;
+        java = {
+            enable = true;
+            package = pkgs.jdk25;
+        };
+
+        steam = {
+            enable = true;
+            remotePlay.openFirewall = true;
+            dedicatedServer.openFirewall = true;
+            localNetworkGameTransfers.openFirewall = true;
+        };
+
+        gnupg.agent = {
+            enable = true;
+            enableSSHSupport = true;
+        };
+    };
+
+    services.way-displays = {
+        enable = true;
+
+        settings = {
+            ORDER = [
+                "HDMI-A-1"
+                "eDP-1"
+            ];
+            SCALING = false;
+            MODE = [
+                {
+                    NAME_DESC = "HDMI-A-1";
+                    WIDTH = 1920;
+                    HEIGHT = 1080;
+                    HZ = 144;
+                }
+
+                {
+                    NAME_DESC = "eDP-1";
+                    WIDTH = 2560;
+                    HEIGHT = 1600;
+                    HZ = 240;
+                }
+            ];
+            SCALE = [
+                {
+                    NAME_DESC = "eDP-1";
+                    SCALE = 1.25;
+                }
+            ];
+        };
+    };
 }

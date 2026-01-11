@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-    imports = [ ./hardware-configuration.nix ];
-
     home.packages = with pkgs; [
         kdePackages.kate
         equibop
@@ -12,26 +10,6 @@
         home-manager
         way-displays
     ];
+
     home.stateVersion = "25.11";
-
-    programs = {
-        firefox.enable = true;
-        git.enable = true;
-        java = {
-            enable = true;
-            package = pkgs.jdk25;
-        };
-
-        steam = {
-            enable = true;
-            remotePlay.openFirewall = true;
-            dedicatedServer.openFirewall = true;
-            localNetworkGameTransfers.openFirewall = true;
-        };
-
-        gnupg.agent = {
-            enable = true;
-            enableSSHSupport = true;
-        };
-    };
 }
