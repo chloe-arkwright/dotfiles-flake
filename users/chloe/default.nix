@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-    imports = [ ../../hosts/chloe-tuxedo ];
-
     home.packages = with pkgs; [
         kdePackages.kate
         equibop
@@ -10,7 +8,9 @@
         gimp
 
         home-manager
+        way-displays
     ];
+    home.stateVersion = "25.11";
 
     programs = {
         firefox.enable = true;

@@ -53,6 +53,8 @@
                         users.chloe = ./users/chloe;
                     };
                 }
+
+                ./hosts/chloe-tuxedo
             ];
         };
     };
