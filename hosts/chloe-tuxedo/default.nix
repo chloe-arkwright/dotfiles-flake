@@ -38,12 +38,11 @@
             libinput.enable = true;
             gpm.enable = true;
 
-            xserver.enable = true;
+            xserver.enable = false;
 
             displayManager.sddm.enable = true;
-            displayManager.sddm.wayland.enable = false;
+            displayManager.sddm.wayland.enable = true;
             desktopManager.plasma6.enable = true;
-            xserver.desktopManager.xterm.enable = false;
 
             printing.enable = true;
 
