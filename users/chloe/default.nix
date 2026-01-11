@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+    imports = [ ../../hosts/chloe-tuxedo ];
+
     home.packages = with pkgs; [
         kdePackages.kate
         equibop
