@@ -29,8 +29,8 @@
 
     boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
     boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-amd" "nvidia" "nvidia_modeset" "nvidia_drm" ];
-    boot.kernelParams = [ "acpi_backlight=native" ];
+    boot.kernelModules = [ "kvm-amd" ];
+    boot.kernelParams = [ "acpi_backlight=vendor" ];
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/036f78b2-a607-42bb-9caf-6efdeffc7a18";

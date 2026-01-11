@@ -38,7 +38,7 @@
             libinput.enable = true;
             gpm.enable = true;
 
-            xserver.enable = false;
+            xserver.enable = true;
 
             displayManager.sddm.enable = true;
             displayManager.sddm.wayland.enable = true;
