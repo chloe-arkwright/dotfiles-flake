@@ -43,7 +43,7 @@
             displayManager.sddm.enable = true;
             displayManager.sddm.wayland.enable = false;
             desktopManager.plasma6.enable = true;
-            desktopManager.xterm.enable = false;
+            xserver.desktopManager.xterm.enable = false;
 
             printing.enable = true;
 
