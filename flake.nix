@@ -14,7 +14,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, home-manager, system, ... }@inputs: {
+    outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {
         nixosConfigurations.chloe-tuxedo = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -48,7 +48,6 @@
                         extraSpecialArgs = {
                           inherit inputs;
                           inherit self;
-                          inherit system;
                         };
 
                         users.chloe = "./users/chloe";
