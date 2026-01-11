@@ -14,7 +14,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {
+    outputs = { self, nixpkgs, nixos-hardware, home-manager, system, ... }@inputs: {
         nixosConfigurations.chloe-tuxedo = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
