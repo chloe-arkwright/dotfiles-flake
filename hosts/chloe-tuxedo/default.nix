@@ -39,6 +39,7 @@
             gpm.enable = true;
 
             xserver.enable = false;
+            xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
             displayManager.sddm.enable = true;
             displayManager.sddm.wayland.enable = true;
