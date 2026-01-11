@@ -50,7 +50,7 @@
                           inherit self;
                         };
 
-                        users.chloe = "./users/chloe";
+                        users.chloe = ./users/chloe;
                     };
                 }
             ];
