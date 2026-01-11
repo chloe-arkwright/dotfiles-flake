@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+    imports = [ ./hardware-configuration.nix ];
+
     home.packages = with pkgs; [
         kdePackages.kate
         equibop
