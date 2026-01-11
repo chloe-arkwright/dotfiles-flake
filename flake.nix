@@ -12,14 +12,6 @@
           repo = "home-manager";
           inputs.nixpkgs.follows = "nixpkgs";
         };
-
-        # bring all the mess together with flake-parts
-        flake-parts = {
-          type = "github";
-          owner = "hercules-ci";
-          repo = "flake-parts";
-          inputs.nixpkgs-lib.follows = "nixpkgs";
-        };
     };
 
     outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {
@@ -39,9 +31,27 @@
                 home-manager.nixosModules.default
 
                 {
+
+                    users.users.chloe = {
+                        isNormalUser = true;
+                        description = "Chloe Arkwright";
+                        extraGroups = [ "networkmanager" "wheel" ];
+                        home = "/home/chloe";
+                    };
+                }
+
+                {
                     home-manager = {
                         useUserPackages = true;
                         useGlobalPkgs = true;
+
+                        extraSpecialArgs = {
+                          inherit inputs;
+                          inherit self;
+                          inherit system;
+                        };
+
+                        users.chloe = "./users/chloe";
                     };
                 }
 

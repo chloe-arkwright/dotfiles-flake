@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -61,40 +57,6 @@
     console.keyMap = "uk";
 
     security.rtkit.enable = true;
-
-    users.users.chloe = {
-        isNormalUser = true;
-        description = "Chloe Arkwright";
-        extraGroups = [ "networkmanager" "wheel" ];
-        packages = with pkgs; [
-          kdePackages.kate
-          equibop
-          jetbrains.idea
-          prismlauncher
-          gimp
-        ];
-    };
-
-    programs = {
-        firefox.enable = true;
-        git.enable = true;
-        java = {
-            enable = true;
-            package = pkgs.jdk25;
-        };
-
-        steam = {
-            enable = true;
-            remotePlay.openFirewall = true;
-            dedicatedServer.openFirewall = true;
-            localNetworkGameTransfers.openFirewall = true;
-        };
-
-        gnupg.agent = {
-            enable = true;
-            enableSSHSupport = true;
-        };
-    };
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
